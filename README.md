@@ -9,7 +9,7 @@ index.html        portfolio page
 games/
   projectile/     Unity WebGL build (index.html, Build/, TemplateData/)
   azon-in-space/  Unity WebGL build
-assets/covers/    cover art (on-point.png and tap-and-flow.png are used for the two titles without a playable build)
+assets/covers/    cover art for all four titles (on-point and tap-and-flow have no playable build)
 ```
 
 ## Add the builds

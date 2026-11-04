@@ -109,7 +109,7 @@ dialog#player::backdrop{background:rgba(8,24,42,.78)}
 <div class="wrap">
   <div class="bar">
     <a class="logo hand" href="#top">klmkt</a>
-    <nav aria-label="Main"><a href="#store">Store</a><a href="#about">Developer</a><a href="#specs">Specifications</a><a href="#contact">Contact</a></nav>
+    <nav aria-label="Main"><a href="#store">Featured</a><a href="#about">About</a><a href="#specs">Skills</a><a href="#contact">Contact</a></nav>
   </div>
   <header class="hero" id="top">
     <h1>Fattah Kalamukti</h1>
@@ -153,7 +153,7 @@ dialog#player::backdrop{background:rgba(8,24,42,.78)}
 </div></section>
 
 <section class="plain" id="specs" style="padding-top:1rem"><div class="wrap">
-  <h2 class="hand">Technical specifications</h2>
+  <h2 class="hand">Skills</h2>
   <div class="specs">
     <div><h3>Game programming</h3><p>Game systems and mechanics, primarily in Unity.</p></div>
     <div><h3>Technical art</h3><p>Integration of animations, audio, user interfaces, and 3D assets.</p></div>
@@ -188,15 +188,15 @@ dialog#player::backdrop{background:rgba(8,24,42,.78)}
 </dialog>
 <script>
 const games=[
-{n:"Projectile",slug:"projectile",role:"Programmer, Technical Artist",ev:"GT Fest x SpaceJam Showcase",team:"5 developers",eng:"Unity",honor:"WPG 2 Best Implementation, GT Fest 2025",tags:["Programming","Technical art","UI"],bg:"linear-gradient(160deg,#6b1414,#1d0a0a 60%,#2f5a2c)",url:"https://klmkt.itch.io/projectile",d:"Gameplay mechanics and systems, character and enemy animation integration, an end-game credits scene, and a consistent UI layout across the entire game."},
-{n:"Azon in Space",slug:"azon-in-space",role:"Designer, Programmer, SFX, Composer",ev:"SpaceJam 2026",team:"4 developers",eng:"Unity",honor:"#16 at SpaceJam 2026",tags:["Game design","Programming","Music"],bg:"linear-gradient(160deg,#0b2a3d,#0d1622 65%,#4a3a12)",url:"https://klmkt.itch.io/azon-in-space",d:"Original concept, core mechanics, and goal design, with art and level design by the team. Includes an original soundtrack and player sound effects."},
-{n:"On Point",slug:"on-point",role:"Programmer, SFX",ev:"Garena Game Jam #3 (2026)",team:"3 developers",eng:"Unity (3D)",honor:"",tags:["3D","Programming","Game jam"],bg:"url(assets/covers/on-point.png) center/cover",noplay:true,url:"https://nugil.itch.io/on-point",d:"A liquid stream generator built from scratch, a scoring system with win and lose conditions, collider-based 3D asset integration, and script-driven asset movement."},
-{n:"Tap & Flow",slug:"tap-and-flow",role:"Sound Engineer (SFX, Music)",ev:"University course project",team:"9 developers",eng:"Godot (GDScript)",honor:"",tags:["Audio","Music","Godot"],bg:"url(assets/covers/tap-and-flow.png) center/cover",noplay:true,url:"https://paganisium.itch.io/tap-and-flow",d:"Full sound effect integration and original background music across multiple scenes."}];
+{n:"Projectile",slug:"projectile",role:"Programmer, Technical Artist",ev:"GT Fest x SpaceJam Showcase",team:"5 developers",eng:"Unity",honor:"WPG 2 Best Implementation, GT Fest 2025",tags:["Programming","Technical art","UI"],bg:"url(assets/covers/projectile.png) 15% center/cover #000",url:"https://klmkt.itch.io/projectile",d:"A top-down shooter that began as a university project and was later given the chance to be showcased. As the programmer, I implemented the gameplay mechanics and systems, integrated character and enemy animations, and developed the end-game credits scene. I also arranged the UI layout to ensure consistent element placement and a cohesive user interface throughout the game."},
+{n:"Azon in Space",slug:"azon-in-space",role:"Designer, Programmer, SFX, Composer",ev:"SpaceJam 2026",team:"4 developers",eng:"Unity",honor:"#16 at SpaceJam 2026",tags:["Game design","Programming","Music"],bg:"url(assets/covers/azon-in-space.png) center/cover #0d1622",notitle:true,url:"https://klmkt.itch.io/azon-in-space",d:"A time-twisting 2D platformer where you go through an analog clock to bend time and outsmart the cosmos. I came up with the initial concept and design for the game, defining the core mechanics and a simple goal. My teammates supported me with the art and level design. I also composed the music for the game and added sound effects for the player."},
+{n:"On Point",slug:"on-point",role:"Programmer, SFX",ev:"Garena Game Jam #3 (2026)",team:"3 developers",eng:"Unity (3D)",honor:"",tags:["3D","Programming","Game jam"],bg:"url(assets/covers/on-point.png) center/cover",noplay:true,notitle:true,url:"https://nugil.itch.io/on-point",d:"On Point is a game made during Garena Game Jam 3 in 2026. I built the liquid stream generator completely from scratch, designed the scoring system and the win/lose conditions, and integrated 3D assets with colliders placed where needed. I also moved 3D assets manually through scripts instead of using animations."},
+{n:"Tap & Flow",slug:"tap-and-flow",role:"Sound Engineer (SFX, Music)",ev:"University course project",team:"9 developers",eng:"Godot (GDScript)",honor:"",tags:["Audio","Music","Godot"],bg:"url(assets/covers/tap-and-flow.png) center/cover",noplay:true,notitle:true,url:"https://paganisium.itch.io/tap-and-flow",d:"Tap & Flow is a fun and addictive traffic puzzle game where your mission is to help cars safely cross the road without causing chaos! I integrated all of the sound effects in the game and produced the background music for various scenes."}];
 const $=id=>document.getElementById(id),pk=$("picker");
 games.forEach((g,i)=>{const li=document.createElement("li");li.innerHTML='<button type="button"><span class="mini" style="background:'+g.bg+'"></span><span><b></b><small></small></span></button>';
 li.querySelector("b").textContent=g.n;li.querySelector("small").textContent=g.role;li.firstChild.onclick=()=>pick(i);pk.appendChild(li)});
 function pick(i){const g=games[i];
-$("cover").style.background=g.bg;$("ctitle").textContent=g.noplay?"":g.n;$("play").hidden=!!g.noplay;$("honor").textContent=g.honor;
+$("cover").style.background=g.bg;$("ctitle").textContent=g.notitle?"":g.n;$("play").hidden=!!g.noplay;$("honor").textContent=g.honor;
 $("title").textContent=g.n;$("desc").textContent=g.d;$("itch").href=g.url;cur=i;
 $("tags").innerHTML="";g.tags.forEach(t=>{const l=document.createElement("li");l.textContent=t;$("tags").appendChild(l)});
 $("meta").innerHTML="";[["Developer","Fattah Kalamukti"],["Role",g.role],["Event",g.ev],["Team",g.team],["Engine",g.eng]].forEach(r=>{const a=document.createElement("dt"),b=document.createElement("dd");a.textContent=r[0];b.textContent=r[1];$("meta").append(a,b)});
