@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Fattah Kalamukti – Game Developer</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;800&family=Caveat+Brush&display=swap">
+<style>
+:root{--paper:#ecebe6;--surface:#f7f6f2;--ink:#08182a;--muted:#48525e;--red:#d54545;--red-ink:#b32f2f;--on-red:#08182a;--shadow:#08182a;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#0d1622;--surface:#16233a;--ink:#f1eee6;--muted:#aab4c0;--red:#e25a57;--red-ink:#ff8582;--shadow:#000;color-scheme:dark}}
+:root[data-theme="dark"]{--paper:#0d1622;--surface:#16233a;--ink:#f1eee6;--muted:#aab4c0;--red:#e25a57;--red-ink:#ff8582;--shadow:#000;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 1rem/1.7 Poppins,system-ui,sans-serif;overflow-x:hidden}
+a{color:inherit}button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+.wrap{max-width:66rem;margin:0 auto;padding:0 1.25rem;position:relative}
+.hand{font-family:"Caveat Brush","Comic Sans MS",cursive;font-weight:400}
+h2{font-size:clamp(2.2rem,5vw,3.1rem);line-height:1;margin:0 0 1.6rem;color:var(--red-ink)}
+
+/* top bar */
+.bar{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1.1rem 0}
+.logo{font-size:1.9rem;text-decoration:none;color:var(--red-ink);line-height:1}
+.bar nav{display:flex;gap:1.4rem;font-size:.9rem;font-weight:500}
+.bar nav a{text-decoration:none}.bar nav a:hover{color:var(--red-ink)}
+
+/* hero */
+.hero{padding:2.5rem 0 1rem}
+.hero h1{margin:0;font-weight:800;font-size:clamp(2.6rem,9vw,6.2rem);line-height:.92;letter-spacing:-.035em;max-width:11ch}
+.hero p{max-width:30rem;margin:1.2rem 0 0;color:var(--muted);font-size:1.08rem}
+
+/* store */
+#store{position:relative;padding:2.5rem 0 4rem}
+#store::before{content:"";position:absolute;z-index:0;right:-18%;top:4rem;width:75%;aspect-ratio:2.2/1;background:var(--red);border-radius:50%;transform:rotate(-8deg);opacity:.9}
+#store .wrap{z-index:1}
+.shop{display:grid;grid-template-columns:1fr 15rem;gap:2.2rem;align-items:start}
+.stage{display:grid;grid-template-columns:1.15fr 1fr;gap:1.8rem;align-items:center}
+.cover{position:relative;aspect-ratio:4/3;border-radius:1.1rem;border:3px solid var(--ink);box-shadow:9px 9px 0 var(--shadow);transform:rotate(-2.2deg);display:flex;align-items:flex-end;padding:1.2rem;overflow:hidden;color:#fff;transition:transform .3s}
+.cover .t{font-size:clamp(2.4rem,6vw,3.9rem);line-height:.9;text-shadow:3px 3px 0 rgba(0,0,0,.35)}
+.sticker{position:absolute;top:.9rem;right:.9rem;max-width:11rem;background:#fff4e6;color:#08182a;border:2px solid #08182a;border-radius:.9rem;padding:.35rem .8rem;font-size:.8rem;font-weight:500;line-height:1.35;transform:rotate(4deg)}
+.sticker:empty{display:none}
+.info h3{margin:0;font-size:2.4rem;line-height:1}
+.tags{display:flex;flex-wrap:wrap;gap:.4rem;margin:.7rem 0 1rem;padding:0;list-style:none}
+.tags li{background:var(--ink);color:var(--paper);border-radius:2rem;padding:.05rem .8rem;font-size:.8rem;font-weight:500}
+.info p{margin:0 0 1rem;font-size:.95rem}
+.meta{display:grid;grid-template-columns:auto 1fr;gap:.15rem 1rem;margin:0 0 1.3rem;font-size:.88rem}
+.meta dt{color:var(--muted)}.meta dd{margin:0;font-weight:500}
+.btn{display:inline-block;padding:.65rem 1.5rem;border:3px solid var(--ink);border-radius:.8rem;font-weight:500;text-decoration:none;background:var(--red);color:var(--on-red);box-shadow:4px 4px 0 var(--shadow);transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--shadow)}
+.btn.alt{background:var(--surface);color:var(--ink)}
+
+.picker{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.7rem}
+.picker button{width:100%;display:flex;gap:.8rem;align-items:center;text-align:left;background:var(--surface);border:2px solid var(--ink);border-radius:.9rem;padding:.45rem;cursor:pointer;transition:transform .2s}
+.picker li:nth-child(odd) button{transform:rotate(1deg)}.picker li:nth-child(even) button{transform:rotate(-1deg)}
+.picker button[aria-pressed="true"]{background:var(--ink);color:var(--paper);transform:translateX(-.8rem) rotate(0)}
+.mini{flex:0 0 3.4rem;height:2.6rem;border-radius:.5rem;border:2px solid var(--ink)}
+.picker b{display:block;font-weight:500;font-size:.92rem;line-height:1.25}
+.picker small{display:block;font-size:.75rem;opacity:.75;line-height:1.3}
+
+/* about */
+section.plain{padding:3.5rem 0}
+.about{display:grid;grid-template-columns:1.6fr 1fr;gap:3rem;align-items:start}
+.about p{margin:0 0 1rem;max-width:40rem}
+.facts{background:var(--surface);border:3px solid var(--ink);border-radius:1.1rem;padding:1.2rem 1.4rem;box-shadow:7px 7px 0 var(--red);transform:rotate(1.6deg)}
+.facts dt{font-weight:500;color:var(--red-ink);font-size:.85rem}.facts dd{margin:0 0 .8rem}.facts dd:last-child{margin:0}
+
+/* specs */
+.specs{display:grid;gap:2rem 3rem;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr))}
+.specs h3{margin:0 0 .5rem;font-size:1rem;color:var(--red-ink)}
+.specs p{margin:0}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem;list-style:none;margin:0;padding:0}
+.chips li{border:2px solid var(--ink);border-radius:.7rem;padding:.1rem .85rem;font-size:.92rem;background:var(--surface)}
+.chips li:nth-child(3n+1){transform:rotate(-1.5deg)}.chips li:nth-child(3n){transform:rotate(1.2deg)}
+.edu{margin-top:2.6rem;max-width:40rem;border-left:6px solid var(--red);padding-left:1.2rem}
+.edu h3{margin:0;font-size:1.05rem}.edu p{margin:.2rem 0}
+
+/* contact */
+.contact{position:relative;padding:4rem 0;text-align:center;background:var(--red);color:var(--on-red);border-radius:50% 50% 0 0/ 3.5rem 3.5rem 0 0}
+.contact h2{color:var(--on-red)}
+.contact .big{display:block;font-weight:800;font-size:clamp(1.2rem,4.8vw,2.5rem);letter-spacing:-.02em;word-break:break-word;text-decoration:none}
+.contact .big:hover{text-decoration:underline}
+.links{display:flex;flex-wrap:wrap;gap:.6rem 1.6rem;justify-content:center;margin-top:1.4rem;font-weight:500}
+.contact a:focus-visible{outline-color:var(--on-red)}
+footer{padding:1.5rem 0 2.5rem;text-align:center;font-size:.85rem;background:var(--red);color:var(--on-red)}
+
+@media (max-width:820px){
+ .shop,.stage,.about{grid-template-columns:1fr}
+ .picker{flex-direction:row;overflow-x:auto;padding:.3rem .3rem 1rem}
+ .picker li{flex:0 0 14rem}.picker button[aria-pressed="true"]{transform:none}
+ #store::before{width:130%;right:-45%}
+ .bar nav{gap:.9rem}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+[hidden]{display:none!important}
+.cta{display:flex;flex-wrap:wrap;gap:.8rem}
+button.btn{font:inherit;font-weight:500;cursor:pointer}
+dialog#player{width:min(96vw,70rem);max-height:94vh;padding:0;border:3px solid var(--ink);border-radius:1rem;background:var(--paper);color:var(--ink);box-shadow:10px 10px 0 var(--red)}
+dialog#player::backdrop{background:rgba(8,24,42,.78)}
+.phead{display:flex;flex-wrap:wrap;gap:.5rem 1rem;align-items:center;justify-content:space-between;padding:.6rem 1rem;border-bottom:3px solid var(--ink)}
+.phead b{font-size:1.5rem;font-weight:400}
+.phead span{display:flex;flex-wrap:wrap;gap:.5rem 1rem;align-items:center;font-size:.88rem;font-weight:500}
+.phead button{background:var(--surface);border:2px solid var(--ink);border-radius:.6rem;padding:.15rem .8rem;cursor:pointer}
+.phead a{color:var(--red-ink)}
+#frame{display:block;width:100%;aspect-ratio:16/10;max-height:80vh;border:0;background:#000}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="bar">
+    <a class="logo hand" href="#top">klmkt</a>
+    <nav aria-label="Main"><a href="#store">Store</a><a href="#about">Developer</a><a href="#specs">Specifications</a><a href="#contact">Contact</a></nav>
+  </div>
+  <header class="hero" id="top">
+    <h1>Fattah Kalamukti</h1>
+    <p>Game developer focused on game systems, mechanics, and audio. Explore featured titles, developed in Unity and Godot.</p>
+  </header>
+</div>
+
+<main>
+<section id="store"><div class="wrap">
+  <h2 class="hand">Featured titles</h2>
+  <div class="shop">
+    <div class="stage">
+      <div class="cover" id="cover"><span class="t hand" id="ctitle"></span><span class="sticker" id="honor"></span></div>
+      <div class="info" aria-live="polite">
+        <h3 class="hand" id="title"></h3>
+        <ul class="tags" id="tags"></ul>
+        <p id="desc"></p>
+        <dl class="meta" id="meta"></dl>
+        <div class="cta"><button class="btn" id="play" type="button">Play now</button> <a class="btn alt" id="itch" target="_blank" rel="noopener">View on itch.io</a></div>
+      </div>
+    </div>
+    <ul class="picker" id="picker" aria-label="Select a title"></ul>
+  </div>
+</div></section>
+
+<section class="plain" id="about"><div class="wrap">
+  <h2 class="hand">About me</h2>
+  <div class="about">
+    <div>
+      <p>I am a game developer and a fifth-semester Game Technology student at Politeknik Elektronika Negeri Surabaya (PENS). My experience covers game programming, technical art, and music production.</p>
+      <p>My main focus is building game systems and mechanics, mostly with Unity. As a technical artist, I integrate 2D animations, sound effects, and user interfaces so that the playing experience feels cohesive and comfortable. I have also composed music for several games.</p>
+      <p>I take part in game development competitions, which have trained me to work under deadlines and in multidisciplinary teams. I enjoy creating engaging gameplay and I’m always eager to learn new technologies.</p>
+    </div>
+    <dl class="facts">
+      <dt>Based in</dt><dd>Jakarta, Indonesia</dd>
+      <dt>Studying</dt><dd>Game Technology, PENS Surabaya</dd>
+      <dt>Primary engine</dt><dd>Unity</dd>
+      <dt>Languages</dt><dd>Bahasa Indonesia (native), English (professional working proficiency)</dd>
+    </dl>
+  </div>
+</div></section>
+
+<section class="plain" id="specs" style="padding-top:1rem"><div class="wrap">
+  <h2 class="hand">Technical specifications</h2>
+  <div class="specs">
+    <div><h3>Game programming</h3><p>Game systems and mechanics, primarily in Unity.</p></div>
+    <div><h3>Technical art</h3><p>Integration of animations, audio, user interfaces, and 3D assets.</p></div>
+    <div><h3>Audio production</h3><p>Original music composition and sound effects.</p></div>
+    <div><h3>Programming languages</h3><ul class="chips"><li>C#</li><li>C++</li><li>Java</li></ul></div>
+    <div><h3>Tools and technology</h3><ul class="chips"><li>Unity</li><li>Godot</li><li>Git</li><li>Figma</li><li>FL Studio</li></ul></div>
+  </div>
+  <div class="edu">
+    <h3>Politeknik Elektronika Negeri Surabaya (PENS)</h3>
+    <p>Bachelor of Applied Engineering, Game Technology<br>June 2024 to present · GPA 3.54 / 4.00</p>
+    <p style="color:var(--muted);font-size:.9rem">Coursework: Object-Oriented Programming, Data Structures and Algorithms, Computer Graphics, Database Systems, Game Production, Game Mechanics Design, Interactive Narrative, Level Design.</p>
+  </div>
+</div></section>
+
+<section class="contact" id="contact"><div class="wrap">
+  <h2 class="hand">Contact the developer</h2>
+  <a class="big" href="mailto:fattahklmkt@gmail.com">fattahklmkt@gmail.com</a>
+  <div class="links">
+    <a href="tel:+6282111656795">+62 821-1165-6795</a>
+    <a href="https://www.linkedin.com/in/fattah-kalamukti-832285245/" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://github.com/klmkt" target="_blank" rel="noopener">GitHub</a>
+    <a href="https://klmkt.itch.io/" target="_blank" rel="noopener">itch.io</a>
+  </div>
+</div></section>
+</main>
+<footer>© 2026 Fattah Kalamukti. All rights reserved.</footer>
+
+<dialog id="player" aria-label="Game player">
+  <div class="phead"><b class="hand" id="ptitle"></b>
+    <span><button type="button" id="pfull">Fullscreen</button><a id="pitch" target="_blank" rel="noopener">Open on itch.io</a><button type="button" id="pclose">Close</button></span></div>
+  <iframe id="frame" title="Game window" allow="fullscreen; autoplay; gamepad" allowfullscreen></iframe>
+</dialog>
+<script>
+const games=[
+{n:"Projectile",slug:"projectile",role:"Programmer, Technical Artist",ev:"GT Fest x SpaceJam Showcase",team:"5 developers",eng:"Unity",honor:"WPG 2 Best Implementation, GT Fest 2025",tags:["Programming","Technical art","UI"],bg:"linear-gradient(160deg,#6b1414,#1d0a0a 60%,#2f5a2c)",url:"https://klmkt.itch.io/projectile",d:"Gameplay mechanics and systems, character and enemy animation integration, an end-game credits scene, and a consistent UI layout across the entire game."},
+{n:"Azon in Space",slug:"azon-in-space",role:"Designer, Programmer, SFX, Composer",ev:"SpaceJam 2026",team:"4 developers",eng:"Unity",honor:"#16 at SpaceJam 2026",tags:["Game design","Programming","Music"],bg:"linear-gradient(160deg,#0b2a3d,#0d1622 65%,#4a3a12)",url:"https://klmkt.itch.io/azon-in-space",d:"Original concept, core mechanics, and goal design, with art and level design by the team. Includes an original soundtrack and player sound effects."},
+{n:"On Point",slug:"on-point",role:"Programmer, SFX",ev:"Garena Game Jam #3 (2026)",team:"3 developers",eng:"Unity (3D)",honor:"",tags:["3D","Programming","Game jam"],bg:"url(assets/covers/on-point.png) center/cover",noplay:true,url:"https://nugil.itch.io/on-point",d:"A liquid stream generator built from scratch, a scoring system with win and lose conditions, collider-based 3D asset integration, and script-driven asset movement."},
+{n:"Tap & Flow",slug:"tap-and-flow",role:"Sound Engineer (SFX, Music)",ev:"University course project",team:"9 developers",eng:"Godot (GDScript)",honor:"",tags:["Audio","Music","Godot"],bg:"url(assets/covers/tap-and-flow.png) center/cover",noplay:true,url:"https://paganisium.itch.io/tap-and-flow",d:"Full sound effect integration and original background music across multiple scenes."}];
+const $=id=>document.getElementById(id),pk=$("picker");
+games.forEach((g,i)=>{const li=document.createElement("li");li.innerHTML='<button type="button"><span class="mini" style="background:'+g.bg+'"></span><span><b></b><small></small></span></button>';
+li.querySelector("b").textContent=g.n;li.querySelector("small").textContent=g.role;li.firstChild.onclick=()=>pick(i);pk.appendChild(li)});
+function pick(i){const g=games[i];
+$("cover").style.background=g.bg;$("ctitle").textContent=g.noplay?"":g.n;$("play").hidden=!!g.noplay;$("honor").textContent=g.honor;
+$("title").textContent=g.n;$("desc").textContent=g.d;$("itch").href=g.url;cur=i;
+$("tags").innerHTML="";g.tags.forEach(t=>{const l=document.createElement("li");l.textContent=t;$("tags").appendChild(l)});
+$("meta").innerHTML="";[["Developer","Fattah Kalamukti"],["Role",g.role],["Event",g.ev],["Team",g.team],["Engine",g.eng]].forEach(r=>{const a=document.createElement("dt"),b=document.createElement("dd");a.textContent=r[0];b.textContent=r[1];$("meta").append(a,b)});
+[...pk.querySelectorAll("button")].forEach((b,j)=>b.setAttribute("aria-pressed",j===i))}
+let cur=0;const pl=$("player"),fr=$("frame");
+$("play").onclick=()=>{const g=games[cur];$("ptitle").textContent=g.n;$("pitch").href=g.url;fr.src="games/"+g.slug+"/index.html";pl.showModal()};
+$("pclose").onclick=()=>pl.close();
+$("pfull").onclick=()=>{(fr.requestFullscreen||fr.webkitRequestFullscreen||function(){}).call(fr)};
+pl.addEventListener("close",()=>{fr.src="about:blank"});
+pick(0);
+</script>
+</body>
+</html>
