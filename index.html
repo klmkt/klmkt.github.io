@@ -199,7 +199,7 @@ function pick(i){const g=games[i];
 $("cover").style.background=g.bg;$("ctitle").textContent=g.notitle?"":g.n;$("play").hidden=!!g.noplay;$("honor").textContent=g.honor;
 $("title").textContent=g.n;$("desc").textContent=g.d;$("itch").href=g.url;cur=i;
 $("tags").innerHTML="";g.tags.forEach(t=>{const l=document.createElement("li");l.textContent=t;$("tags").appendChild(l)});
-$("meta").innerHTML="";[["Developer","Fattah Kalamukti"],["Role",g.role],["Event",g.ev],["Team",g.team],["Engine",g.eng]].forEach(r=>{const a=document.createElement("dt"),b=document.createElement("dd");a.textContent=r[0];b.textContent=r[1];$("meta").append(a,b)});
+$("meta").innerHTML="";[["Role",g.role],["Event",g.ev],["Team",g.team],["Engine",g.eng]].forEach(r=>{const a=document.createElement("dt"),b=document.createElement("dd");a.textContent=r[0];b.textContent=r[1];$("meta").append(a,b)});
 [...pk.querySelectorAll("button")].forEach((b,j)=>b.setAttribute("aria-pressed",j===i))}
 let cur=0;const pl=$("player"),fr=$("frame");
 $("play").onclick=()=>{const g=games[cur];$("ptitle").textContent=g.n;$("pitch").href=g.url;fr.src="games/"+g.slug+"/index.html";pl.showModal()};
